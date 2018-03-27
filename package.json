@@ -1,6 +1,6 @@
 {
   "name": "kalendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "这是一个用于创建日历的js脚本",
   "main": "dist/kalendar.js",
   "scripts": {
@@ -14,8 +14,8 @@
   "keywords": [
     "日历"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "LoadChange <soocto@gmail.com>",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/LoadChange/kalendar/issues"
   },

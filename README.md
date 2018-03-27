@@ -12,7 +12,10 @@
 
 1. 安装
 
-    >   有两种方法，1、使用npm; npm install kalendar --save-dev 2、直接引用dist\kalendar.js
+    >   有两种方法，
+    
+    1. 使用npm; npm install kalendar --save-dev 
+    2. 直接引用dist\kalendar.js
     
 2. new Kalendar(options)
 
@@ -22,6 +25,20 @@
    -    endTime: 结束时间 如:'2018-06' 默认开始时间月份的后三个月
    -    mount: 挂载项 {'2018-03-14': {'festival': '情人节'}}
    -    weekStart: 周几开始 0为周日 1为周一 ，默认为0
+   
+   ```
+
+      var kalendar = new Kalendar({
+            startTime: '2018-03',
+            endTime: '2018-06',
+            mount: {
+                '2018-03-14': {'festival': '情人节'}
+            },
+            weekStart: 0
+        })
+        
+        console.log(kalendar)
+    ```
    
    由Kalendar得到如下对象结构
    
