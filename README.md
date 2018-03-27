@@ -25,7 +25,7 @@
    
    由Kalendar得到如下对象结构
    
-   <p align="center"><img src="https://raw.githubusercontent.com/loadchange/kalendar/master/output.png" width="400"></p>
+   <p align="center"><img src="https://raw.githubusercontent.com/loadchange/kalendar/master/output.png" width="800"></p>
    
 3. 内部属性
     
