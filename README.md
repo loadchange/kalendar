@@ -1,8 +1,8 @@
 ### 日期表格
 
-> 注意:这是一个JS脚本库，它不是UI库
+> 注意:这是一个JS库，不包含UI
 
-他用于生成如下图的数据结构
+它用于生成如下图的数据结构
 
 <p align="center"><img src="https://raw.githubusercontent.com/loadchange/kalendar/master/preview.png" width="280"></p>
 
