@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kalendar</title>
+    <script src="dist/kalendar.js"></script>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <td>日</td>
+        <td>一</td>
+        <td>二</td>
+        <td>三</td>
+        <td>四</td>
+        <td>五</td>
+        <td>六</td>
+    </tr>
+    </thead>
+    <tbody id="default"></tbody>
+</table>
+<script>
+    var kalendar = new Kalendar({
+        mount: {
+            '2018-03-14': {'festival': '情人节'}
+        }
+    })
+    console.log(kalendar)
+    var tbody = document.getElementById('default')
+    var html = ''
+    for (var month in kalendar) {
+        html += '<tr><td colspan="7" align="center">' + month + '</td></tr>'
+
+        for (var j = 0; j < kalendar[month].length; j++) {
+            html += '<tr>'
+            for (var k = 0; k < 7; k++) {
+                var date = kalendar[month][j][k]
+                html += '<td>' + (date ? date.date + '<br>' + (date.extension ? JSON.stringify(date.extension) : '') : '') + '</td>'
+            }
+            html += '</tr>'
+        }
+    }
+    tbody.innerHTML = html
+</script>
+</body>
+</html>

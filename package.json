@@ -1,0 +1,32 @@
+{
+  "name": "kalendar",
+  "version": "1.0.0",
+  "description": "这是一个用于创建日历的js脚本",
+  "main": "dist/kalendar.js",
+  "scripts": {
+    "dev": "rollup --config build/rollup.config.js --watch",
+    "build": "rollup --config build/rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoadChange/kalendar.git"
+  },
+  "keywords": [
+    "日历"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoadChange/kalendar/issues"
+  },
+  "homepage": "https://github.com/LoadChange/kalendar#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^0.57.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-json": "^2.3.0"
+  }
+}
