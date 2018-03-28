@@ -55,7 +55,7 @@
    - month: 月份(0-11)
    - date: 日期(1-31)
    - day: 周几(0-6)周日-周六
-   - extension: 用户挂载数据
    - dateText: '2018-03-19'
    - past: 小于今天的日期时为true
    - today: 等于今天的日期时为true
+   - ... : new Kalendar时挂载的mount、unifiedMount中的字段
