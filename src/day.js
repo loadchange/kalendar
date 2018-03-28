@@ -10,7 +10,8 @@ export default class Day {
         this.dateText = utils.getChinaStandard(dateObj)
         this.extension = extension
         this.past = this.toDay.getTime() > dateObj.getTime()
-        this.today = utils.getChinaStandard(dateObj) === this.dateText
+        console.log(utils.getChinaStandard(new Date()), this.dateText)
+        this.today = utils.getChinaStandard(new Date()) === this.dateText
     }
 
     get toDay() {

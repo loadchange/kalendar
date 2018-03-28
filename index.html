@@ -39,7 +39,7 @@
             html += '<tr>'
             for (var k = 0; k < 7; k++) {
                 var date = kalendar[month][j][k]
-                html += '<td>' + (date ? date.date + '<br>' + (date.extension ? JSON.stringify(date.extension) : '') : '') + '</td>'
+                html += '<td>' + (date ? date.date+date.today + '<br>' + (date.extension ? JSON.stringify(date.extension) : '') : '') + '</td>'
             }
             html += '</tr>'
         }
