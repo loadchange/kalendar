@@ -1,4 +1,5 @@
 import Day from './day'
+import * as utils from './utils'
 
 export default class Kalendar {
     constructor(options = {}) {
@@ -46,19 +47,6 @@ export default class Kalendar {
         return date
     }
 
-    _getChinaStandard(date, streamline) {
-        let month = date.getMonth()
-        let day = date.getDate()
-        if (month < 10) {
-            month = `0${month + 1}`
-        }
-        if (day < 10) {
-            day = `0${day}`
-        }
-        let arr = streamline ? [date.getFullYear(), month] : [date.getFullYear(), month, day]
-        return arr.join('-')
-    }
-
     _create() {
         let table = {}
         let count = (this.endDate.getFullYear() * 12 + this.endDate.getMonth() + 1)
@@ -89,9 +77,9 @@ export default class Kalendar {
                     num -= skip
                 }
                 for (let j = 0; j < num; j++) {
-                    let dateText = this._getChinaStandard(date)
+                    let dateText = utils.getChinaStandard(date)
                     let mount = Object.assign({}, this.unifiedMount, this.mount[dateText])
-                    week.push(new Day(date, dateText, mount))
+                    week.push(new Day(date, mount))
                     if (date.getDate() < days) {
                         date.setDate(date.getDate() + 1)
                     } else {
@@ -101,7 +89,7 @@ export default class Kalendar {
                 monthTable.push(week)
             }
 
-            table[this._getChinaStandard(date, true)] = monthTable
+            table[utils.getChinaStandard(date, true)] = monthTable
             count--
             idx++
         } while (count > 0)

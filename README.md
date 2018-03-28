@@ -57,3 +57,5 @@
    - day: 周几(0-6)周日-周六
    - extension: 用户挂载数据
    - dateText: '2018-03-19'
+   - past: 小于今天的日期时为true
+   - today: 等于今天的日期时为true

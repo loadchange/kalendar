@@ -1,11 +1,24 @@
+import * as utils from './utils'
+
 export default class Day {
-    constructor(dateObj, dateText, extension) {
+    constructor(dateObj, extension) {
         this.__DateObject__ = dateObj
         this.year = dateObj.getFullYear()
         this.month = dateObj.getMonth()
         this.date = dateObj.getDate()
         this.day = dateObj.getDay()
-        this.dateText = dateText
+        this.dateText = utils.getChinaStandard(dateObj)
         this.extension = extension
+        this.past = this.toDay.getTime() > dateObj.getTime()
+        this.today = utils.getChinaStandard(dateObj) === dateText
+    }
+
+    get toDay() {
+        let date = new Date()
+        date.setHours(0)
+        date.setMinutes(0)
+        date.setSeconds(0)
+        date.setMilliseconds(0)
+        return date
     }
 }
