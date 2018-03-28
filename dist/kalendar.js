@@ -91,7 +91,6 @@
             this.dateText = getChinaStandard(dateObj);
             this.extension = extension;
             this.past = this.toDay.getTime() > dateObj.getTime();
-            console.log(getChinaStandard(new Date()), this.dateText);
             this.today = getChinaStandard(new Date()) === this.dateText;
         }
 
