@@ -1,6 +1,6 @@
 {
   "name": "kalendar",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "这是一个用于创建日历的js脚本",
   "main": "dist/kalendar.js",
   "scripts": {

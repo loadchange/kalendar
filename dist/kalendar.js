@@ -80,7 +80,8 @@
     }();
 
     var Day = function () {
-        function Day(dateObj, extension) {
+        function Day(dateObj) {
+            var extension = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
             classCallCheck(this, Day);
 
             this.__DateObject__ = dateObj;
@@ -89,9 +90,12 @@
             this.date = dateObj.getDate();
             this.day = dateObj.getDay();
             this.dateText = getChinaStandard(dateObj);
-            this.extension = extension;
             this.past = this.toDay.getTime() > dateObj.getTime();
             this.today = getChinaStandard(new Date()) === this.dateText;
+            var _self = this;
+            Object.keys(extension).forEach(function (key) {
+                _self[key] = extension[key];
+            });
         }
 
         createClass(Day, [{
