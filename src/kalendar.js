@@ -4,6 +4,7 @@ export default class Kalendar {
     constructor(options = {}) {
         this.startTime = options.startTime
         this.endTime = options.endTime
+        this.unifiedMount = options.unifiedMount || {}
         this.mount = options.mount || {}
         this.weekStart = options.weekStart || 0
         return this._create()
@@ -49,7 +50,7 @@ export default class Kalendar {
         let month = date.getMonth()
         let day = date.getDate()
         if (month < 10) {
-            month = `0${month+1}`
+            month = `0${month + 1}`
         }
         if (day < 10) {
             day = `0${day}`
@@ -88,7 +89,9 @@ export default class Kalendar {
                     num -= skip
                 }
                 for (let j = 0; j < num; j++) {
-                    week.push(new Day(date, this.mount[this._getChinaStandard(date)]))
+                    let dateText = this._getChinaStandard(date)
+                    let mount = Object.assign({}, this.unifiedMount, this.mount[dateText])
+                    week.push(new Day(date, dateText, mount))
                     if (date.getDate() < days) {
                         date.setDate(date.getDate() + 1)
                     } else {

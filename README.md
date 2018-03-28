@@ -15,7 +15,7 @@
     >   有两种方法，
 
     1. 使用npm; npm install kalendar --save-dev
-    2. 直接引用dist\kalendar.js
+    2. 直接引用dist/kalendar.js
 
 2. new Kalendar(options)
 
@@ -23,7 +23,8 @@
 
    -    startTime: 开始时间 如:'2018-03' 默认当前月
    -    endTime: 结束时间 如:'2018-06' 默认开始时间月份的后三个月
-   -    mount: 挂载项 {'2018-03-14': {'festival': '情人节'}}
+   -    unifiedMount: 需要对所有日期统一挂载的字段 {'price':370}
+   -    mount: 单独挂载项 如 {'2018-03-14': {'festival': '情人节','price':'368'}} ,遇到unifiedMount相同的Key,覆盖unifiedMount的Value
    -    weekStart: 周几开始 0为周日 1为周一 ，默认为0
 
    ```
