@@ -2,7 +2,6 @@ import * as utils from './utils'
 
 export default class Day {
     constructor(dateObj, extension = {}) {
-        this.__DateObject__ = dateObj
         this.year = dateObj.getFullYear()
         this.month = dateObj.getMonth()
         this.date = dateObj.getDate()
@@ -10,6 +9,7 @@ export default class Day {
         this.dateText = utils.getChinaStandard(dateObj)
         this.past = this.toDay.getTime() > dateObj.getTime()
         this.today = utils.getChinaStandard(new Date()) === this.dateText
+        this.timestamp = dateObj.getTime()
         let _self = this
         Object.keys(extension).forEach(key => {
             _self[key] = extension[key]

@@ -84,7 +84,6 @@
             var extension = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
             classCallCheck(this, Day);
 
-            this.__DateObject__ = dateObj;
             this.year = dateObj.getFullYear();
             this.month = dateObj.getMonth();
             this.date = dateObj.getDate();
@@ -92,6 +91,7 @@
             this.dateText = getChinaStandard(dateObj);
             this.past = this.toDay.getTime() > dateObj.getTime();
             this.today = getChinaStandard(new Date()) === this.dateText;
+            this.timestamp = dateObj.getTime();
             var _self = this;
             Object.keys(extension).forEach(function (key) {
                 _self[key] = extension[key];
