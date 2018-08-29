@@ -12,13 +12,10 @@ export default class Kalendar {
     }
 
     _getMonthDays(date) {
-        let year = date.getFullYear()
-        let month = date.getMonth()
-        let leapYear = !(year % 4) && ((year % 100) || !(year % 400))
-        let days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        if (leapYear) {
-            days[1] = 29
-        }
+        const year = date.getFullYear()
+        const month = date.getMonth()
+        const leapYear = !(year % 4) && ((year % 100) || !(year % 400))
+        const days = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         return days[month]
     }
 
