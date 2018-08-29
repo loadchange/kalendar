@@ -95,5 +95,4 @@ export default class Kalendar {
         } while (count > 0)
         return table
     }
-
 }

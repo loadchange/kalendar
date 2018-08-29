@@ -15,7 +15,7 @@
     "日历"
   ],
   "author": "LoadChange <soocto@gmail.com>",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/LoadChange/kalendar/issues"
   },
