@@ -11,6 +11,19 @@ export default class Kalendar {
         return this._create()
     }
 
+    get startDate() {
+        return this.startTime ? this._getDate(this.startTime) : new Date()
+    }
+
+    get endDate() {
+        if (this.endTime) {
+            return this._getDate(this.endTime)
+        }
+        let date = this.startDate
+        date.setMonth(date.getMonth() + 3)
+        return date
+    }
+
     _getMonthDays(date) {
         const year = date.getFullYear()
         const month = date.getMonth()
@@ -25,22 +38,6 @@ export default class Kalendar {
         [year, month] = dateStr.split('-')
         date.setFullYear(+year)
         date.setMonth(--month)
-        return date
-    }
-
-    get startDate() {
-        if (this.startTime) {
-            return this._getDate(this.startTime)
-        }
-        return new Date()
-    }
-
-    get endDate() {
-        if (this.endTime) {
-            return this._getDate(this.endTime)
-        }
-        let date = this.startDate
-        date.setMonth(date.getMonth() + 3)
         return date
     }
 
