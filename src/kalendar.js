@@ -40,7 +40,7 @@ export default class Kalendar {
         return table
     }
 
-    static monthly({date, mount, weekStart = 0, unifiedMount}) {
+    static monthly({date, mount = {}, weekStart = 0, unifiedMount = {}}) {
         const monthTable = []
         const days = utils.getMonthDays(date)
         date.setDate(1)
@@ -56,7 +56,7 @@ export default class Kalendar {
             }
             for (let j = 0; j < num; j++) {
                 const dateText = utils.getChinaStandard(date)
-                week.push(new Day(date, Object.assign(unifiedMount, mount[dateText])))
+                week.push(new Day(date, Object.assign({}, unifiedMount, mount[dateText])))
                 if (date.getDate() >= days) break
                 date.setDate(date.getDate() + 1)
             }

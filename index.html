@@ -7,6 +7,20 @@
     <meta name="author" content="LoadChange">
     <title>Checkout example for Bootstrap</title>
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        td {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        td:hover {
+            opacity: .7;
+        }
+
+        .table {
+            min-height: 400px;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -57,16 +71,21 @@
         </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Date selection</h4>
-            <table class="table table-hover table-dark">
+            <table class="table table-dark">
                 <thead>
                 <tr align="center">
+                    <td colspan="2" id="previous">Previous</td>
+                    <td colspan="3" id="month-text"></td>
+                    <td colspan="2" id="next">Next</td>
+                </tr>
+                <tr align="center">
+                    <td>日</td>
                     <td>一</td>
                     <td>二</td>
                     <td>三</td>
                     <td>四</td>
                     <td>五</td>
                     <td>六</td>
-                    <td>日</td>
                 </tr>
                 </thead>
                 <tbody id="main-body"></tbody>
@@ -87,26 +106,55 @@
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js"></script>
 <script src="./dist/kalendar.js"></script>
 <script>
-    var kalendar = new Kalendar({
-        mount: {
-            '2018-03-14': {'festival': '情人节'}
-        }
-    })
-    var tbody = document.getElementById('main-body')
-    var html = ''
-    for (var month in kalendar) {
-        html += '<tr><td colspan="7" align="center">' + month + '</td></tr>'
-
-        for (var j = 0; j < kalendar[month].length; j++) {
-            html += '<tr align="center">'
-            for (var k = 0; k < 7; k++) {
-                var date = kalendar[month][j][k]
-                html += '<td>' + (date ? date.date + date.today + '<br>' + (date.extension ? JSON.stringify(date.extension) : '') : '') + '</td>'
-            }
-            html += '</tr>'
-        }
+    var unifiedMount = {
+        price: 550,
+        bg: 'info'
     }
-    tbody.innerHTML = html
+    var date = new Date()
+    var mount = {}
+    var testKey = `${date.getFullYear()}-${(date.getMonth() < 9) ? '0' : ''}${date.getMonth() + 1}-`
+    mount[`${testKey}15`] = {flow: 'high'}
+    mount[`${testKey}16`] = {flow: 'high'}
+    mount[`${testKey}20`] = {flow: 'high'}
+    mount[`${testKey}24`] = {flow: 'high'}
+    var tbody = document.getElementById('main-body')
+    var monthText = document.getElementById('month-text')
+    var monthTable = Kalendar.monthly({date: date, mount: mount, unifiedMount: unifiedMount})
+
+    function render() {
+        var month = date.getMonth() + 1
+        monthText.innerHTML = [date.getFullYear(), (month >= 10 ? month : `0${month}`)].join('-')
+        var html = []
+        monthTable.forEach(week => {
+            html.push('<tr align="center">')
+            week.forEach(date => {
+                let css = []
+                const prefix = 'table-'
+                if (date) {
+                    if (date.bg) css.push(`${prefix}${date.bg}`)
+                    if ([0, 6].indexOf(date.day) >= 0) css.push('bg-warning')
+                    if (date.flow === 'high') css.push('bg-danger')
+                }
+                html.push(`<td class="${css.join(' ')}">${date ? (`${date.date}<br />￥${date.price}`) : ''}</td>`)
+            })
+            html.push('</tr>')
+        })
+        tbody.innerHTML = html.join('')
+    }
+
+    render()
+
+    document.getElementById('previous').onclick = function () {
+        date.setMonth(date.getMonth() - 1)
+        monthTable = Kalendar.monthly({date: date, mount: mount, unifiedMount: unifiedMount})
+        render()
+    }
+
+    document.getElementById('next').onclick = function () {
+        date.setMonth(date.getMonth() + 1)
+        monthTable = Kalendar.monthly({date: date, mount: mount, unifiedMount: unifiedMount})
+        render()
+    }
 </script>
 
 </body>
