@@ -1,50 +1,113 @@
 <!doctype html>
 <html lang="zh_CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kalendar</title>
-    <script src="dist/kalendar.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="KALENDAR">
+    <meta name="author" content="LoadChange">
+    <title>Checkout example for Bootstrap</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<table border="1">
-    <thead>
-    <tr>
-        <td>日</td>
-        <td>一</td>
-        <td>二</td>
-        <td>三</td>
-        <td>四</td>
-        <td>五</td>
-        <td>六</td>
-    </tr>
-    </thead>
-    <tbody id="default"></tbody>
-</table>
+
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Kalendar Demo</h2>
+        <p class="lead">Kalendar can quickly build a complex calendar that can be applied to many scenarios, such as:
+            tourist attraction ticket booking, plane ticket booking, train ticket booking, room hotel booking, etc.
+            Below is a ticket price to demonstrate the power of Kalendar.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Ticket details</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Standard tickets</h6>
+                        <small class="text-muted">Adult tickets</small>
+                    </div>
+                    <span class="text-muted">$12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Children ticket</h6>
+                        <small class="text-muted">The height is under 120 cm</small>
+                    </div>
+                    <span class="text-muted">$8</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Tickets for elderly</h6>
+                        <small class="text-muted">Older than 65</small>
+                    </div>
+                    <span class="text-muted">$51</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between bg-light">
+                    <div class="text-success">
+                        <h6 class="my-0">Premium holiday</h6>
+                        <small>On weekdays</small>
+                    </div>
+                    <span class="text-success">-$5</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Date selection</h4>
+            <table class="table table-hover table-dark">
+                <thead>
+                <tr align="center">
+                    <td>一</td>
+                    <td>二</td>
+                    <td>三</td>
+                    <td>四</td>
+                    <td>五</td>
+                    <td>六</td>
+                    <td>日</td>
+                </tr>
+                </thead>
+                <tbody id="main-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 kalendar</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">GitHub</a></li>
+            <li class="list-inline-item"><a href="#">NPM</a></li>
+            <li class="list-inline-item"><a href="#">Introduce</a></li>
+        </ul>
+    </footer>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="./dist/kalendar.js"></script>
 <script>
     var kalendar = new Kalendar({
         mount: {
             '2018-03-14': {'festival': '情人节'}
         }
     })
-    console.log(kalendar)
-    var tbody = document.getElementById('default')
+    var tbody = document.getElementById('main-body')
     var html = ''
     for (var month in kalendar) {
         html += '<tr><td colspan="7" align="center">' + month + '</td></tr>'
 
         for (var j = 0; j < kalendar[month].length; j++) {
-            html += '<tr>'
+            html += '<tr align="center">'
             for (var k = 0; k < 7; k++) {
                 var date = kalendar[month][j][k]
-                html += '<td>' + (date ? date.date+date.today + '<br>' + (date.extension ? JSON.stringify(date.extension) : '') : '') + '</td>'
+                html += '<td>' + (date ? date.date + date.today + '<br>' + (date.extension ? JSON.stringify(date.extension) : '') : '') + '</td>'
             }
             html += '</tr>'
         }
     }
     tbody.innerHTML = html
 </script>
+
 </body>
 </html>

@@ -10,14 +10,14 @@ export default class Day {
         this.past = this.toDay.getTime() > dateObj.getTime()
         this.today = utils.getChinaStandard(new Date()) === this.dateText
         this.timestamp = dateObj.getTime()
-        let _self = this
+        const _self = this
         Object.keys(extension).forEach(key => {
             _self[key] = extension[key]
         })
     }
 
     get toDay() {
-        let date = new Date()
+        const date = new Date()
         date.setHours(0)
         date.setMinutes(0)
         date.setSeconds(0)
