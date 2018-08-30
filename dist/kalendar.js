@@ -187,10 +187,12 @@
           key: 'monthly',
           value: function monthly(_ref2) {
               var date = _ref2.date,
-                  mount = _ref2.mount,
+                  _ref2$mount = _ref2.mount,
+                  mount = _ref2$mount === undefined ? {} : _ref2$mount,
                   _ref2$weekStart = _ref2.weekStart,
                   weekStart = _ref2$weekStart === undefined ? 0 : _ref2$weekStart,
-                  unifiedMount = _ref2.unifiedMount;
+                  _ref2$unifiedMount = _ref2.unifiedMount,
+                  unifiedMount = _ref2$unifiedMount === undefined ? {} : _ref2$unifiedMount;
 
               var monthTable = [];
               var days = getMonthDays(date);
@@ -208,7 +210,7 @@
                   }
                   for (var j = 0; j < num; j++) {
                       var dateText = getChinaStandard(date);
-                      week.push(new Day(date, Object.assign(unifiedMount, mount[dateText])));
+                      week.push(new Day(date, Object.assign({}, unifiedMount, mount[dateText])));
                       if (date.getDate() >= days) break;
                       date.setDate(date.getDate() + 1);
                   }
