@@ -5,7 +5,7 @@
   "main": "dist/kalendar.js",
   "scripts": {
     "dev": "rollup --config build/rollup.config.js --watch",
-    "build": "rollup --config build/rollup.config.js"
+    "build": "NODE_ENV=production ./node_modules/.bin/rollup -c build/rollup.config.js"
   },
   "repository": {
     "type": "git",
