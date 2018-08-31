@@ -1,7 +1,7 @@
 {
   "name": "kalendar",
-  "version": "1.1.1",
-  "description": "这是一个用于创建日历的js脚本",
+  "version": "1.1.7",
+  "description": "This is a javascript for creating calendars",
   "main": "dist/kalendar.js",
   "scripts": {
     "dev": "rollup --config build/rollup.config.js --watch",
@@ -12,6 +12,8 @@
     "url": "git+https://github.com/LoadChange/kalendar.git"
   },
   "keywords": [
+    "calendar",
+    "Complex calendar",
     "日历"
   ],
   "author": "LoadChange <soocto@gmail.com>",
@@ -19,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/LoadChange/kalendar/issues"
   },
-  "homepage": "https://github.com/LoadChange/kalendar#readme",
+  "homepage": "https://loadchange.github.io/kalendar/index.html",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-plugin-external-helpers": "^6.22.0",
