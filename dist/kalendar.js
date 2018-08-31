@@ -130,8 +130,9 @@
   }();
 
   var Kalendar = function () {
-      function Kalendar(_ref) {
-          var start = _ref.start,
+      function Kalendar() {
+          var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+              start = _ref.start,
               end = _ref.end,
               _ref$unifiedMount = _ref.unifiedMount,
               unifiedMount = _ref$unifiedMount === undefined ? {} : _ref$unifiedMount,
@@ -139,6 +140,7 @@
               mount = _ref$mount === undefined ? {} : _ref$mount,
               _ref$weekStart = _ref.weekStart,
               weekStart = _ref$weekStart === undefined ? 0 : _ref$weekStart;
+
           classCallCheck(this, Kalendar);
 
           this.startTime = start;
