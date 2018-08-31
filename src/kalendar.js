@@ -2,7 +2,7 @@ import Day from './day'
 import * as utils from './utils'
 
 export default class Kalendar {
-    constructor({start, end, unifiedMount = {}, mount = {}, weekStart = 0}) {
+    constructor({start, end, unifiedMount = {}, mount = {}, weekStart = 0} = {}) {
         this.startTime = start
         this.endTime = end
         this.unifiedMount = unifiedMount

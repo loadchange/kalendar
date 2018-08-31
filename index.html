@@ -13,12 +13,33 @@
             user-select: none;
         }
 
-        td:hover {
+        #previous:hover, #next:hover {
+            color: #cddc39;
+        }
+
+        tbody td:hover {
             opacity: .7;
+            transform: scale(1.03);
+            transition: all 1s;
         }
 
         .table {
             min-height: 400px;
+        }
+
+        table td.sold-out {
+            background-color: #c6c8ca;
+            cursor: not-allowed;
+        }
+
+        .modal-content {
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .table-container {
+            height: 466px;
+            overflow: scroll;
         }
     </style>
 </head>
@@ -34,44 +55,30 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
+        <div class="col-md-5 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Ticket details</span>
+                <span class="text-muted">new Kalendar()</span>
             </h4>
-            <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Standard tickets</h6>
-                        <small class="text-muted">Adult tickets</small>
-                    </div>
-                    <span class="text-muted">$12</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Children ticket</h6>
-                        <small class="text-muted">The height is under 120 cm</small>
-                    </div>
-                    <span class="text-muted">$8</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">Tickets for elderly</h6>
-                        <small class="text-muted">Older than 65</small>
-                    </div>
-                    <span class="text-muted">$51</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between bg-light">
-                    <div class="text-success">
-                        <h6 class="my-0">Premium holiday</h6>
-                        <small>On weekdays</small>
-                    </div>
-                    <span class="text-success">-$5</span>
-                </li>
-            </ul>
+            <div class="table-container">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr align="center">
+                        <td>SUN</td>
+                        <td>MON</td>
+                        <td>TUE</td>
+                        <td>WED</td>
+                        <td>THU</td>
+                        <td>FRI</td>
+                        <td>SAT</td>
+                    </tr>
+                    </thead>
+                    <tbody id="main-body2"></tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Date selection</h4>
-            <table class="table table-dark">
+        <div class="col-md-7 order-md-1">
+            <h4 class="mb-3">Kalendar.monthly</h4>
+            <table class="table table-bordered table-dark">
                 <thead>
                 <tr align="center">
                     <td colspan="2" id="previous">Previous</td>
@@ -79,13 +86,13 @@
                     <td colspan="2" id="next">Next</td>
                 </tr>
                 <tr align="center">
-                    <td>日</td>
-                    <td>一</td>
-                    <td>二</td>
-                    <td>三</td>
-                    <td>四</td>
-                    <td>五</td>
-                    <td>六</td>
+                    <td>SUN</td>
+                    <td>MON</td>
+                    <td>TUE</td>
+                    <td>WED</td>
+                    <td>THU</td>
+                    <td>FRI</td>
+                    <td>SAT</td>
                 </tr>
                 </thead>
                 <tbody id="main-body"></tbody>
@@ -101,29 +108,59 @@
             <li class="list-inline-item"><a href="#">Introduce</a></li>
         </ul>
     </footer>
+
+    <div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 </div>
 
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="./dist/kalendar.js"></script>
 <script>
+    function getChinaStandard(date, streamline) {
+        let month = date.getMonth() + 1
+        let day = date.getDate()
+        month = `${month < 10 ? '0' : ''}${month}`
+        day = `${day < 10 ? '0' : ''}${day}`
+        const arr = streamline ? [date.getFullYear(), month] : [date.getFullYear(), month, day]
+        return arr.join('-')
+    }
+
     var unifiedMount = {
+        total: 1000,
         price: 550,
         bg: 'info'
     }
+
     var date = new Date()
     var mount = {}
-    var testKey = `${date.getFullYear()}-${(date.getMonth() < 9) ? '0' : ''}${date.getMonth() + 1}-`
-    mount[`${testKey}15`] = {flow: 'high'}
-    mount[`${testKey}16`] = {flow: 'high'}
-    mount[`${testKey}20`] = {flow: 'high'}
-    mount[`${testKey}24`] = {flow: 'high'}
-    var tbody = document.getElementById('main-body')
+    var monthTable = {}
     var monthText = document.getElementById('month-text')
-    var monthTable = Kalendar.monthly({date: date, mount: mount, unifiedMount: unifiedMount})
 
     function render() {
-        var month = date.getMonth() + 1
-        monthText.innerHTML = [date.getFullYear(), (month >= 10 ? month : `0${month}`)].join('-')
+
+        var testKey = getChinaStandard(date, true)
+        var testConf = {flow: 'high'}
+        var rand = 0
+        var i = 0
+        for (; i < 5; i++) {
+            rand = Math.floor(Math.random() * 27 + 1);
+            mount[`${testKey}-${rand < 10 ? '0' : ''}${rand}`] = testConf
+        }
+
+        testConf = {total: 0}
+        for (i = 0; i < 3; i++) {
+            rand = Math.floor(Math.random() * 27 + 1);
+            mount[`${testKey}-${rand < 10 ? '0' : ''}${rand}`] = testConf
+        }
+
+        monthTable = Kalendar.monthly({date: date, mount: mount, unifiedMount: unifiedMount})
+
+        monthText.innerHTML = getChinaStandard(date, true)
         var html = []
         monthTable.forEach(week => {
             html.push('<tr align="center">')
@@ -134,27 +171,53 @@
                     if (date.bg) css.push(`${prefix}${date.bg}`)
                     if ([0, 6].indexOf(date.day) >= 0) css.push('bg-warning')
                     if (date.flow === 'high') css.push('bg-danger')
+                    if (date.total === 0) css.push(`sold-out`)
                 }
-                html.push(`<td class="${css.join(' ')}">${date ? (`${date.date}<br />￥${date.price}`) : ''}</td>`)
+                html.push(`<td class="${css.join(' ')}"${date ? ` onclick="clickDate('${date.dateText}')"` : ''}>${date ? (`${date.date}<br />￥${date.price}`) : ''}</td>`)
             })
             html.push('</tr>')
         })
-        tbody.innerHTML = html.join('')
+        document.getElementById('main-body').innerHTML = html.join('')
     }
 
     render()
 
     document.getElementById('previous').onclick = function () {
         date.setMonth(date.getMonth() - 1)
-        monthTable = Kalendar.monthly({date: date, mount: mount, unifiedMount: unifiedMount})
         render()
     }
 
     document.getElementById('next').onclick = function () {
         date.setMonth(date.getMonth() + 1)
-        monthTable = Kalendar.monthly({date: date, mount: mount, unifiedMount: unifiedMount})
         render()
     }
+
+    function clickDate(dateText) {
+        $('.modal-content').html(dateText)
+        $('#myModal').modal('show')
+    }
+
+    var kalendar2 = new Kalendar()
+    console.log(kalendar2)
+    var html2 = []
+    for (var dateText in kalendar2) {
+        html2.push('<tr align="center" class="table-success">')
+        html2.push(`<td colspan="7">${dateText}</td>`)
+        html2.push('</tr>')
+        kalendar2[dateText].forEach(week => {
+            html2.push('<tr align="center">')
+            week.forEach(day => {
+                html2.push(`<td>${day ? day.date : ''}</td>`)
+            })
+            if (week.length < 7) {
+                for (var i = 0; i < 7 - week.length; i++) {
+                    html2.push('<td></td>')
+                }
+            }
+            html2.push('</tr>')
+        })
+    }
+    $('#main-body2').html(html2.join(''))
 </script>
 
 </body>
