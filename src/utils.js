@@ -19,6 +19,6 @@ export function getDate(dateStr) {
     const date = new Date()
     const [year, month] = dateStr.split('-')
     date.setFullYear(+year)
-    date.setMonth(month - 1)
+    date.setMonth(month - 1, 1)
     return date
 }
