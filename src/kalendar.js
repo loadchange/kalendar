@@ -60,6 +60,7 @@ export default class Kalendar {
                 if (date.getDate() >= days) break
                 date.setDate(date.getDate() + 1)
             }
+            while (week.length < num) week.push(null)
             monthTable.push(week)
         }
         return monthTable
