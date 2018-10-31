@@ -31,6 +31,7 @@ export default class Kalendar {
         let idx = 0
         do {
             const date = this.startDate
+            date.setDate(1)
             date.setMonth(date.getMonth() + idx)
             const monthTable = Kalendar.monthly({date, mount, weekStart, unifiedMount})
             table[utils.getChinaStandard(date, true)] = monthTable
