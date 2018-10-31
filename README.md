@@ -1,5 +1,8 @@
 ### 日期表格
 
+[![](https://img.shields.io/npm/v/kalendar.svg)](https://www.npmjs.com/package/kalendar)
+[![](https://img.shields.io/npm/dm/kalendar.svg)](https://www.npmjs.com/package/kalendar)
+
 > 注意:这是一个JS库，不包含UI
 
 它用于生成如下图的数据结构

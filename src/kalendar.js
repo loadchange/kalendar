@@ -12,7 +12,9 @@ export default class Kalendar {
     }
 
     get startDate() {
-        return this.startTime ? utils.getDate(this.startTime) : new Date()
+        const date = this.startTime ? utils.getDate(this.startTime) : new Date()
+        date.setDate(1)
+        return date
     }
 
     get endDate() {
@@ -23,18 +25,16 @@ export default class Kalendar {
     }
 
     _create() {
-        const {mount, weekStart, unifiedMount} = this
+        const {mount, weekStart, unifiedMount, startDate, endDate} = this
         const table = {}
-        let count = (this.endDate.getFullYear() * 12 + this.endDate.getMonth() + 1)
-            - (this.startDate.getFullYear() * 12 + this.startDate.getMonth() + 1)
+        let count = (endDate.getFullYear() * 12 + endDate.getMonth() + 1)
+            - (startDate.getFullYear() * 12 + startDate.getMonth() + 1)
         if (count < 0) return null
         let idx = 0
         do {
-            const date = this.startDate
-            date.setDate(1)
+            const date = new Date(startDate.getTime())
             date.setMonth(date.getMonth() + idx)
-            const monthTable = Kalendar.monthly({date, mount, weekStart, unifiedMount})
-            table[utils.getChinaStandard(date, true)] = monthTable
+            table[utils.getChinaStandard(date, true)] = Kalendar.monthly({date, mount, weekStart, unifiedMount})
             count--
             idx++
         } while (count > 0)
@@ -42,9 +42,9 @@ export default class Kalendar {
     }
 
     static monthly({date, mount = {}, weekStart = 0, unifiedMount = {}}) {
+        date.setDate(1)
         const monthTable = []
         const days = utils.getMonthDays(date)
-        date.setDate(1)
         const day = date.getDay()
         let skip = 0
         if (day !== weekStart) skip = day - weekStart
