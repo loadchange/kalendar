@@ -27,8 +27,8 @@ options：
    ```
 
       var kalendar = new Kalendar({
-            startTime: '2018-03',
-            endTime: '2018-06',
+            start: '2018-03',
+            end: '2018-06',
             mount: {
                 '2018-03-14': {'festival': '情人节'}
             },
