@@ -47,7 +47,7 @@ export default class Kalendar {
         const days = utils.getMonthDays(date)
         const day = date.getDay()
         let skip = 0
-        if (day !== weekStart) skip = day - weekStart
+        if (day !== weekStart) skip = (day || 7) - weekStart
         for (let i = 0; i < days + skip; i += 7) {
             const week = []
             let num = 7
