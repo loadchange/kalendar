@@ -7,7 +7,7 @@
 
 它用于生成如下图的数据结构
 
-<p align="center"><img src="https://raw.githubusercontent.com/loadchange/kalendar/master/preview.png" width="280"></p>
+<p align="center"><img src="./images/preview.png" width="280"></p>
 
 
 ### 安装
@@ -43,7 +43,7 @@ options：
 
    由Kalendar得到如下对象结构
 
-   <p align="center"><img src="https://raw.githubusercontent.com/loadchange/kalendar/master/output.png" width="800"></p>
+   <p align="center"><img src="./images/output.png" width="800"></p>
 
 1. Kalendar.monthly(options)
 

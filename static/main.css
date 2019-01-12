@@ -32,8 +32,11 @@ table td.sold-out {
     overflow: scroll;
 }
 
+.finger {
+    cursor: pointer;
+}
+
 .github-link {
     position: absolute;
-    top: 0;
     right: 0;
 }
