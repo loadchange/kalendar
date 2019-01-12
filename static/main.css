@@ -1,0 +1,39 @@
+td {
+    cursor: pointer;
+    user-select: none;
+}
+
+#previous:hover, #next:hover {
+    color: #cddc39;
+}
+
+tbody td:hover {
+    opacity: .7;
+    transform: scale(1.03);
+    transition: all 1s;
+}
+
+.table {
+    min-height: 539px;
+}
+
+table td.sold-out {
+    background-color: #c6c8ca;
+    cursor: not-allowed;
+}
+
+.modal-content {
+    font-size: 36px;
+    text-align: center;
+}
+
+.table-container {
+    height: 540px;
+    overflow: scroll;
+}
+
+.github-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

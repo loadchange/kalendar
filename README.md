@@ -1,68 +1,70 @@
-### 日期表格
+# alendar
+
+### Date table data generation
+
+[中文](./README-zhCN.md)
 
 [![](https://img.shields.io/npm/v/kalendar.svg)](https://www.npmjs.com/package/kalendar)
 [![](https://img.shields.io/npm/dm/kalendar.svg)](https://www.npmjs.com/package/kalendar)
 
-> 注意:这是一个JS库，不包含UI
+> Note: this is a JS library and does not contain a UI
 
-它用于生成如下图的数据结构
+It is used to generate the data structure shown below
 
-<p align="center"><img src="https://raw.githubusercontent.com/loadchange/kalendar/master/preview.png" width="280"></p>
+<p align="center"><img src="./images/preview.png" width="280"></p>
 
 
-### 安装
+### Installation
 
-    >   有两种方法，
+> There are two ways,
 
-    1. 使用npm; npm install kalendar --save-dev
-    2. 直接引用dist/kalendar.js
+1. npm install kalendar --save-dev
+2. download `dist/kalendar.js`, Into your own projects.
 
-### 使用
+### Use the help
 
 options：
 
-   -    startTime: 开始时间 如:'2018-03' 默认当前月
-   -    endTime: 结束时间 如:'2018-06' 默认开始时间月份的后三个月
-   -    unifiedMount: 需要对所有日期统一挂载的字段 {'price':370}
-   -    mount: 单独挂载项 如 {'2018-03-14': {'festival': '情人节','price':'368'}} ,遇到unifiedMount相同的Key,覆盖unifiedMount的Value
-   -    weekStart: 周几开始 0为周日 1为周一 ，默认为0
+   -    startTime: Start time :'2019-01' default current month
+   -    endTime: three months after the default start time of '2019-03'
+   -    unifiedMount: Fields that need to be mounted uniformly for all dates `{'price':370}`
+   -    mount: Separate mount items `{'2019-03-14': {'festival': 'Valentine's Day','price':'368'}}` ,Encountered the same Key of `unifiedMount`, overwriting the Value of `unifiedMount`
+   -    weekStart: Weeks start with 0 for Sunday, 1 for Monday, and so on, and the default is 0
 
    ```
-
-      var kalendar = new Kalendar({
-            start: '2018-03',
-            end: '2018-06',
+      const kalendar = new Kalendar({
+            start: '2018-01',
+            end: '2018-03',
             mount: {
-                '2018-03-14': {'festival': '情人节'}
+                '2019-03-14': {'festival': '情人节'}
             },
             weekStart: 0
-        })
-
-        console.log(kalendar)
+      });
+      console.log(kalendar);
    ```
 
-   由Kalendar得到如下对象结构
+   The following object structure is obtained by `Kalendar`
 
-   <p align="center"><img src="https://raw.githubusercontent.com/loadchange/kalendar/master/output.png" width="800"></p>
+   <p align="center"><img src="./images/output.png" width="800"></p>
 
 1. Kalendar.monthly(options)
 
-   用于构建一个月的数据
+   Used to build a month's worth of data
 
 2. new Kalendar(options)
 
 
-### 内部属性
+### Internal properties
 
-   每一天的数据以周为单位存放在月份数据的对象下，Day对象中除了挂载了,常用的 年、月、日信息外，
-   还有用户挂载的扩展数据和当天的 Date 对象(通过属性：\__DateObject\__获取)
+   The data of each Day is stored in weekly units under the object of month data. In the Day object, in addition to the commonly used year, month and Day information,
+   There is also user-mounted extended data and the Date object of the day (available through the attribute: \__DateObject\__)
 
-   - \__DateObject\__ : 当天的Date对象
-   - year : 年份
-   - month: 月份(0-11)
-   - date: 日期(1-31)
-   - day: 周几(0-6)周日-周六
-   - dateText: '2018-03-19'
-   - past: 小于今天的日期时为true
-   - today: 等于今天的日期时为true
-   - ... : new Kalendar时挂载的mount、unifiedMount中的字段
+   - \__DateObject\__ : The Date object of the day
+   - year : Year
+   - month: Month(0-11)
+   - date: Date(1-31)
+   - day: Day (0-6) Sunday - Saturday
+   - dateText: '2019-01-12'
+   - past: Less than today's date for `true`
+   - today: Is equal to the date of today for `true`
+   - ... : Other user mount fields

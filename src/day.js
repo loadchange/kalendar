@@ -1,27 +1,27 @@
-import * as utils from './utils'
+import * as utils from './utils';
 
-export default class Day {
-    constructor(dateObj, extension = {}) {
-        this.year = dateObj.getFullYear()
-        this.month = dateObj.getMonth()
-        this.date = dateObj.getDate()
-        this.day = dateObj.getDay()
-        this.dateText = utils.getChinaStandard(dateObj)
-        this.past = this.toDay.getTime() > dateObj.getTime()
-        this.today = utils.getChinaStandard(new Date()) === this.dateText
-        this.timestamp = dateObj.getTime()
-        const _self = this
-        Object.keys(extension).forEach(key => {
-            _self[key] = extension[key]
-        })
-    }
+class Day {
+  constructor(date, extension = {}) {
+    const toDay = utils.eraseTime(new Date().getTime());
+    const timestamp = utils.eraseTime(date.getTime());
+    const dateText = utils.getChinaStandard(date);
+    const assignment = {
+      year: date.getFullYear(),
+      month: date.getMonth(),
+      date: date.getDate(),
+      day: date.getDay(),
+      past: toDay > timestamp,
+      today: toDay === utils.eraseTime(timestamp),
+      dateText,
+      timestamp,
+      ...extension,
+    };
+    Object.keys(assignment).forEach(key => this.set(key, assignment[key]));
+  }
 
-    get toDay() {
-        const date = new Date()
-        date.setHours(0)
-        date.setMinutes(0)
-        date.setSeconds(0)
-        date.setMilliseconds(0)
-        return date
-    }
+  set(key, val) {
+    this[key] = val;
+  }
 }
+
+export default Day;

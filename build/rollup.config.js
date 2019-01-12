@@ -1,4 +1,5 @@
 import babel from 'rollup-plugin-babel';
+import {eslint} from 'rollup-plugin-eslint';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
@@ -10,12 +11,13 @@ export default {
         name: 'Kalendar',
         file: 'dist/kalendar.js',
         format: 'umd',
-        sourcemap: false
+        sourcemap: true
     },
     plugins: [
         resolve(),
         commonjs(),
-        babel(),
+        eslint({include: ['src/**/*.js']}),
+        babel({exclude: 'node_modules/**'}),
         replace({
             ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
         }),
