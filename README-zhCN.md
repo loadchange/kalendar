@@ -14,7 +14,7 @@
 
     >   有两种方法，
 
-    1. 使用npm; npm install kalendar --save-dev
+    1. 使用npm; npm install kalendar --save
     2. 直接引用dist/kalendar.js
 
 ### 使用
