@@ -40,7 +40,7 @@ class Kalendar {
     return table;
   }
 
-  static monthly({ date, mount = {}, weekStart = 0, unifiedMount = {} }) {
+  static monthly({ date, mount = {}, unifiedMount = {}, weekStart = 0, continuous }) {
     date.setDate(1);
     const monthTable = [];
     const days = utils.getMonthDays(date);
@@ -51,7 +51,16 @@ class Kalendar {
       const week = [];
       let num = 7;
       if (!i && skip) {
-        for (let k = 0; k < skip; k++) week.push(null);
+        for (let k = 0; k < skip; k++) {
+          if (continuous) {
+            const agoneDate = new Date(date.valueOf());
+            agoneDate.setDate(agoneDate.getDate() - skip + k);
+            const previousDateText = utils.getChinaStandard(agoneDate);
+            week.push(new Day(agoneDate, Object.assign({}, unifiedMount, mount[previousDateText])));
+          } else {
+            week.push(null);
+          }
+        }
         num -= skip;
       }
       for (let j = 0; j < num; j++) {
@@ -60,7 +69,16 @@ class Kalendar {
         if (date.getDate() >= days) break;
         date.setDate(date.getDate() + 1);
       }
-      while (week.length < num) week.push(null);
+      const futureDate = new Date(date.valueOf());
+      while (week.length < num) {
+        if (continuous) {
+          futureDate.setDate(futureDate.getDate() + 1);
+          const dateText = utils.getChinaStandard(futureDate);
+          week.push(new Day(futureDate, Object.assign({}, unifiedMount, mount[dateText])));
+        } else {
+          week.push(null);
+        }
+      }
       monthTable.push(week);
     }
     return monthTable;

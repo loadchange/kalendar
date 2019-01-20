@@ -30,6 +30,7 @@ options：
    -    unifiedMount: Fields that need to be mounted uniformly for all dates `{'price':370}`
    -    mount: Separate mount items `{'2019-03-14': {'festival': 'Valentine's Day','price':'368'}}` ,Encountered the same Key of `unifiedMount`, overwriting the Value of `unifiedMount`
    -    weekStart: Weeks start with 0 for Sunday, 1 for Monday, and so on, and the default is 0
+   -    continuous: Null disconnect dates are not used.(Works with the static method monthly)
 
    ```
       const kalendar = new Kalendar({

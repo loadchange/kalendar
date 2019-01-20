@@ -13,6 +13,7 @@ var unifiedMount = {
   bg: 'info'
 }
 
+var continuous = false;
 var date = new Date()
 var mount = {}
 var monthTable = {}
@@ -34,21 +35,21 @@ function render() {
     rand = Math.floor(Math.random() * 27 + 1);
     mount[`${testKey}-${rand < 10 ? '0' : ''}${rand}`] = testConf
   }
-  monthTable = Kalendar.monthly({ date: date, mount: mount, unifiedMount: unifiedMount })
+  monthTable = Kalendar.monthly({ date: date, mount: mount, unifiedMount: unifiedMount, continuous: continuous })
   monthText.innerHTML = getChinaStandard(date, true)
   var html = []
   monthTable.forEach(week => {
     html.push('<tr align="center">')
-    week.forEach(date => {
+    week.forEach(day => {
       let css = []
       const prefix = 'table-'
-      if (date) {
-        if (date.bg) css.push(`${prefix}${date.bg}`)
-        if ([0, 6].indexOf(date.day) >= 0) css.push('bg-warning')
-        if (date.flow === 'high') css.push('bg-danger')
-        if (date.total === 0) css.push(`sold-out`)
+      if (day && day.month === date.getMonth()) {
+        if (day.bg) css.push(`${prefix}${day.bg}`)
+        if ([0, 6].indexOf(day.day) >= 0) css.push('bg-warning')
+        if (day.flow === 'high') css.push('bg-danger')
+        if (day.total === 0) css.push(`sold-out`)
       }
-      html.push(`<td class="${css.join(' ')}"${date ? ` onclick="clickDate('${date.dateText}')"` : ''}>${date ? (`${date.date}<br />￥${date.price}`) : ''}</td>`)
+      html.push(`<td class="${css.join(' ')}"${day ? ` onclick="clickDate('${day.dateText}')"` : ''}>${day ? (`${day.date}<br />￥${day.price}`) : ''}</td>`)
     })
     html.push('</tr>')
   })
@@ -56,6 +57,11 @@ function render() {
 }
 
 render()
+
+$('.continuous-btn').click(function () {
+  continuous = !continuous;
+  render();
+}).html(continuous ? 'Continuous' : 'ndependent');
 
 document.getElementById('previous').onclick = function () {
   var month = date.getMonth() - 1

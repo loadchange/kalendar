@@ -1,3 +1,7 @@
+## 1.4.1(Jan, 2019)
+
+* [ #5 ] When using `Kalendar.monthly`, add a `continuous` parameter to whether you want the calendar table to be continuous.
+
 ## 1.4.0(Jan, 2019)
 
 * [ #4 ] Upgrade dependencies, code optimization
