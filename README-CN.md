@@ -26,6 +26,7 @@ options：
    -    unifiedMount: 需要对所有日期统一挂载的字段 {'price':370}
    -    mount: 单独挂载项 如 {'2018-03-14': {'festival': '情人节','price':'368'}} ,遇到unifiedMount相同的Key,覆盖unifiedMount的Value
    -    weekStart: 周几开始 0为周日 1为周一 ，默认为0
+   -    continuous: 使用静态方法 `Kalendar.monthly` 时，可以设置日期是否连续。
 
    ```
 

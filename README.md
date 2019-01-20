@@ -1,4 +1,4 @@
-# alendar
+# Kalendar
 
 ### Date table data generation
 
@@ -18,7 +18,7 @@ It is used to generate the data structure shown below
 
 > There are two ways,
 
-1. npm install kalendar --save-dev
+1. npm install kalendar --save
 2. download `dist/kalendar.js`, Into your own projects.
 
 ### Use the help
