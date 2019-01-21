@@ -2,7 +2,7 @@
 
 ### Date table data generation
 
-[中文](./README-zhCN.md)
+[中文](./README-CN.md)
 
 [![](https://img.shields.io/npm/v/kalendar.svg)](https://www.npmjs.com/package/kalendar)
 [![](https://img.shields.io/npm/dm/kalendar.svg)](https://www.npmjs.com/package/kalendar)
