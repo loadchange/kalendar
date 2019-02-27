@@ -12,6 +12,7 @@ class Day {
       day: date.getDay(),
       past: toDay > timestamp,
       today: toDay === utils.eraseTime(timestamp),
+      animal: utils.getAnimal(date),
       dateText,
       timestamp,
       ...extension,
