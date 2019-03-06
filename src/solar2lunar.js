@@ -1,4 +1,4 @@
-import { animals, gan, zhi, nStr, lunarTerm, lunarInfo, lTermInfo } from './constants'
+import { lunarInfo } from './constants'
 
 
 class Solar2lunar {
@@ -8,7 +8,6 @@ class Solar2lunar {
     this.m = date.getMonth();
     this.d = date.getDate();
   }
-
 
   /**
    * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
@@ -34,12 +33,6 @@ class Solar2lunar {
     return (sum + this.leapDays(y));
   }
 
-  /**
-   * 返回农历 y 年 m 月（非闰月）的总天数，计算 m 为闰月时的天数请使用 leapDays 方法
-   * @param y
-   * @param m
-   * @returns {number}
-   */
   monthDays(y, m) {
     return ((lunarInfo[y - 1900] & (0x10000 >> m)) ? 30 : 29);
   }
@@ -87,8 +80,8 @@ class Solar2lunar {
     const month = i; //农历月
     const day = offset + 1; // 农历日
 
-    const results = { year, leap, month, day }
-    return results;
+    return { year, leap, month, day };
   }
-
 }
+
+export default Solar2lunar;
