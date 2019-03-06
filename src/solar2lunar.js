@@ -45,9 +45,8 @@ class Solar2lunar {
   }
 
   lunar() {
-    const results = {};
     const { y, m, d } = this;
-    if (y < 1900 || y > 2100 || (y === 1900 && !m && d < 31)) return results;
+    if (y < 1900 || y > 2100 || (y === 1900 && !m && d < 31)) return {};
 
     let i, temp = 0;
     let offset = (Date.UTC(y, m, d) - Date.UTC(1900, 0, 31)) / 86400000;
@@ -77,6 +76,18 @@ class Solar2lunar {
       offset -= temp;
     }
 
+    if (!offset && leap > 0 && i === leap + 1) {
+      isLeap = !isLeap;
+      if (isLeap) --i;
+    }
+    if (offset < 0) {
+      offset += temp;
+      --i;
+    }
+    const month = i; //农历月
+    const day = offset + 1; // 农历日
+
+    const results = { year, leap, month, day }
     return results;
   }
 
