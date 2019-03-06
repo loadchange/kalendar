@@ -1,3 +1,5 @@
+import { animals } from './constants'
+
 export const getChinaStandard = (date, streamline) => {
   let month = date.getMonth() + 1;
   let day = date.getDate();
@@ -33,7 +35,5 @@ export const eraseTime = (timeStamp) => {
 };
 
 export const calcMonth = date => date.getFullYear() * 12 + date.getMonth() + 1;
-
-const animals = ['猴', '鸡', '狗', '猪', '鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊'];
 
 export const getAnimal = date => animals[date.getFullYear() % 12];
