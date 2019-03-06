@@ -37,7 +37,7 @@ class Solar2lunar {
     return ((lunarInfo[y - 1900] & (0x10000 >> m)) ? 30 : 29);
   }
 
-  lunar() {
+  convert() {
     const { y, m, d } = this;
     if (y < 1900 || y > 2100 || (y === 1900 && !m && d < 31)) return {};
 

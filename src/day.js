@@ -13,6 +13,7 @@ class Day {
       past: toDay > timestamp,
       today: toDay === utils.eraseTime(timestamp),
       animal: utils.getAnimal(date),
+      lunar: utils.lunar(date),
       dateText,
       timestamp,
       ...extension,

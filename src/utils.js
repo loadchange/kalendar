@@ -1,4 +1,5 @@
-import { animals } from './constants'
+import { animals } from './constants';
+import Solar2lunar from './solar2lunar';
 
 export const getChinaStandard = (date, streamline) => {
   let month = date.getMonth() + 1;
@@ -38,18 +39,4 @@ export const calcMonth = date => date.getFullYear() * 12 + date.getMonth() + 1;
 
 export const getAnimal = date => animals[date.getFullYear() % 12];
 
-export const solar2lunar = date => {
-  const results = {}, ;
-  if (y < 1900 || y > 2100 || (y === 1900 && !m && d < 31)) return results;
-  let offset = (Date.UTC(y, m, d) - Date.UTC(1900, 0, 31)) / 86400000;
-  let i, leap = 0, temp = 0;
-  for (i = 1900; i < 2101 && offset > 0; i++) {
-    temp = lYearDays(i);
-    offset -= temp;
-  }
-  if (offset < 0) {
-    offset += temp;
-    i--;
-  }
-  return results;
-}
+export const lunar = date => new Solar2lunar(date).convert();
