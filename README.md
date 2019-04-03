@@ -37,7 +37,7 @@ options：
             start: '2018-01',
             end: '2018-03',
             mount: {
-                '2019-03-14': {'festival': '情人节'}
+                '2019-03-14': {'festival': 'Valentine's Day'}
             },
             weekStart: 0
       });
