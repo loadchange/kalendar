@@ -1,7 +1,0 @@
-{
-  "extends": "eslint-config-ali",
-  "rules": {
-    "max-len": 0,
-    "no-bitwise": 0
-  }
-}
