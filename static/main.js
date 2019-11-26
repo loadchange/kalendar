@@ -35,7 +35,7 @@ function render() {
     rand = Math.floor(Math.random() * 27 + 1);
     mount[`${testKey}-${rand < 10 ? '0' : ''}${rand}`] = testConf
   }
-  monthTable = Kalendar.monthly({ date: date, mount: mount, unifiedMount: unifiedMount, continuous: continuous })
+  monthTable = kalendar.monthly({ date: date, mount: mount, unifiedMount: unifiedMount, continuous: continuous })
   monthText.innerHTML = getChinaStandard(date, true)
   var html = []
   monthTable.forEach(week => {
@@ -80,7 +80,7 @@ function clickDate(dateText) {
   $('#myModal').modal('show')
 }
 
-var kalendar2 = new Kalendar()
+var kalendar2 = new kalendar()
 var html2 = []
 for (var dateText in kalendar2) {
   html2.push('<tr align="center" class="table-success">')
