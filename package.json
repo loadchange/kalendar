@@ -40,7 +40,9 @@
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
-    "travis-deploy-once": "travis-deploy-once"
+    "travis-deploy-once": "travis-deploy-once",
+    "vue-compile": "vue-cli-service build",
+    "react-compile": "react-scripts build"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -126,6 +128,11 @@
     "tslint-config-standard": "^9.0.0",
     "typedoc": "^0.17.0",
     "typescript": "^3.8.3",
-    "uglify-js": "^3.8.0"
+    "uglify-js": "^3.8.0",
+    "vue": "^2.6.11",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "vue-loader": "^15.9.1",
+    "vue-template-compiler": "^2.6.11"
   }
 }
